@@ -1,8 +1,15 @@
 /*Put any struct definitions, typedefs and the above function prototypes in a header file
 “list.h”*/
-
-struct myList
+#ifndef LIST_HEAD
+#define LIST_HEAD
+typedef struct
 {
-	int data;
-	struct myList* next;	
-};
+	char* data;
+	struct list* next;	
+
+}list;
+
+list* create_list();
+int add_to_list(list* ll, char* item);
+
+#endif
