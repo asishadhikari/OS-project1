@@ -91,7 +91,9 @@ void flush_list(list* ll){
 
 //completely erase trace of list ll including memory allocation of list and the data
 void free_list(list* ll){
-
+	flush_list(ll);
+	free(ll);
+	ll = NULL;
 }
 
 int main(){
