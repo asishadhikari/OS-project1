@@ -1,10 +1,11 @@
-//explain how to build and run your program
+1. how to build and run the program:
+		<> run the makefile in the directory as make mymake
+					-> this should create and executable named list_test2
+		<> run the executable as "./list_test2" to see the results of 
+				various tests that are written in list_test.c
+					-> function implementations are done in list.c
 
 //brief description of the pieces of assignment and challenges overcame
-
-//quality and coverage of test cases
-//cleanliness of implementation and documentation
-//correctness and efficiency
 
 
 Chanllenges overcame:

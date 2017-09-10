@@ -7,6 +7,7 @@
 
 list* create_list(){
 	list* myList = (list*) malloc (sizeof(list));
+	//create the empty list with head set at NULL
 	myList->head = NULL;
 	return myList;  
 }
@@ -96,11 +97,6 @@ void free_list(list* ll){
 	ll = NULL;
 }
 
-int main(){
-	
 
-
-	return 0;
-}
 
 
