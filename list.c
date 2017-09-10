@@ -31,6 +31,7 @@ int add_to_list(list* ll, char* item){
 	else if (ll->head !=NULL){
 		node* newNode = (node*)malloc(sizeof(node));
 		newNode -> data = (char*)malloc(sizeof(item));
+		strcpy(newNode->data,item);
 		newNode->next = ll->head;
 		ll->head = newNode;
 		//prevent illegal reference in future
@@ -64,13 +65,39 @@ char* remove_from_list(list* ll){
 
 void print_list(list* ll){
 	if (ll->head == NULL) printf("List Empty!\n");
+	
+	else if(ll->head!=NULL){
+		node* curNode = ll->head;
+		do{
+					printf("%s\n", curNode->data);
+					curNode = curNode->next;
+		} while (curNode!=NULL);		
+	}
+}
+
+void flush_list(list* ll){
+	//only applicable if the list is non empty
+	if(ll->head!=NULL){
+		while(ll->head!=NULL){
+			//remove from list also deallocates the nodes
+			char* temp = remove_from_list(ll);
+			free(temp);
+			temp = NULL;
+		}
+
+	}
+
+}
+
+//completely erase trace of list ll including memory allocation of list and the data
+void free_list(list* ll){
+
 }
 
 int main(){
+	
 
-	list* myList = create_list();
-	add_to_list(myList,"Ashish");
-	print_list(myList);
+
 	return 0;
 }
 

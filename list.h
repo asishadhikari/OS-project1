@@ -33,5 +33,16 @@ caller is expected to free string returned*/
 	//possible returns NULL(empty list) and char* (if successful)
 char* remove_from_list(list* ll);
 
+//
+void print_list(list* ll);
+
+//clear the entire list while deallocating nodes and keeping the head still valid
+void flush_list(list* ll);
+
+
+//deallocates all nodes and the list itself
+
+void free_list(list* ll);
+
 
 #endif 
