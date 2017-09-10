@@ -2,14 +2,16 @@
 “list.h”*/
 #ifndef LIST_HEAD
 #define LIST_HEAD
-typedef struct
-{
+typedef struct list list;
+struct list{
+	//store cstring
 	char* data;
 	struct list* next;	
 
-}list;
+};
 
 list* create_list();
 int add_to_list(list* ll, char* item);
+char* remove_from_list(list* ll);
 
 #endif
