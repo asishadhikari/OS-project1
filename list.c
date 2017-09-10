@@ -1,79 +1,69 @@
 /* Allocates and initializes a new list */
 #include <stdlib.h>
-#include <stdio.h>
 #include <string.h>
+#include <stdio.h>
 #include "list.h"
 
-//Allocates and initialises a new list
+
 list* create_list(){
-		list* head = malloc(sizeof(list));
-		head -> next = NULL;
-		head -> data = NULL;
-		return head;	
+	list* myList = (list*) malloc (sizeof(list));
+	myList->head = NULL;
+	return myList;  
 }
 
-/* Adds item to start of the list. Allocates a
- * new buffer and copies the string from item (use malloc,
- * strlen, and strncpy; or try strdup).
- * Returns 0 if successful, non-zero otherwise. */
+
 int add_to_list(list* ll, char* item){
-	//check if no loaded nodes exist in list
-	int flag = 22;
-	if((ll->data)==NULL){
-		ll->data = malloc(sizeof(item));
-		strcpy(ll->data,item);
-		//change value of flag if item successfully copied
+	int flag = 10;
+	//if the list if empty and has been just initialised;
+	if (ll->head==NULL){
 		
-	}
-	//if the list already contains node with data
-	else if((ll->data)!=NULL){
-		list* newNode = malloc(sizeof(list));
-		//change the next pointer to previous head effectively inserting
-		newNode->next = ll;
-		newNode->data = malloc(sizeof(item));
+		node* newNode = (node*) malloc(sizeof(node));
+		newNode->data = (char*) malloc(sizeof(item));
 		strcpy(newNode->data, item);
-		ll = newNode;
-		//prevent illegal access
+		//next node for empty list is NULL
+		
+		newNode->next = NULL;
+		ll->head = newNode;
+		//prevent illegal reference
 		newNode = NULL;
-
 	}
-if(*(ll->data) == *item) flag = 0;		
-return flag;
+
+	else if (ll->head !=NULL){
+		node* newNode = (node*)malloc(sizeof(node));
+		newNode -> data = (char*)malloc(sizeof(item));
+		newNode->next = ll->head;
+		ll->head = newNode;
+		//prevent illegal reference in future
+		newNode = NULL;
+	//if allocation for node failed and item was not inserted
+	}
+
+	if (ll->head == NULL) flag = 10;			
+	
+	return flag;
 }
 
-/*removes the string frmo the front of the list and reutrns the pointer to it.
-Caller is expected to free string returned when done with it*/
-//NOTE READ THIS ^^^^
-char* remove_from_list(list* ll){
-	char* ret;
-	//if empty list
-	if(ll->data==NULL)  ret=NULL;
-	
-	else if ((ll->data)!=NULL) {
-		
-		ret = ll-> data;
-		list* newHead= ll->next;
-		free(ll);
-		ll = newHead;
-	}
-	
-	//undefined cases
-	else ret=NULL;
-	return ret;
 
+
+char* remove_from_list(list* ll){
+	//if list is empty return NULL
+	char* tempChar;
+	if(ll->head==NULL) tempChar = NULL;
+
+	else if (ll->head!=NULL){
+		tempChar = ll->head->data;
+		node* tempPtr = ll->head->next;
+		free(ll->head);
+		ll->head = tempPtr;
+		tempPtr=NULL;
+  }
+  return tempChar; 		 
 }
 
 int main(){
 
-	list* myList = create_list();
-	char* str = "Ashish";
-	int flag = add_to_list(myList,str);
-	remove_from_list(myList);
-	add_to_list(myList,str);
-
-
-
-
-
+	
 	return 0;
 }
+
+
