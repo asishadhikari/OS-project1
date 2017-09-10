@@ -53,16 +53,24 @@ char* remove_from_list(list* ll){
 	else if (ll->head!=NULL){
 		tempChar = ll->head->data;
 		node* tempPtr = ll->head->next;
+		//prevent memory leak
 		free(ll->head);
 		ll->head = tempPtr;
+		//prevent illegal access
 		tempPtr=NULL;
   }
   return tempChar; 		 
 }
 
+void print_list(list* ll){
+	if (ll->head == NULL) printf("List Empty!\n");
+}
+
 int main(){
 
-	
+	list* myList = create_list();
+	add_to_list(myList,"Ashish");
+	print_list(myList);
 	return 0;
 }
 
