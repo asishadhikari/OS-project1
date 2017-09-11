@@ -1,7 +1,7 @@
 /*Put any struct definitions, typedefs and the above function prototypes in a header file
 “list.h”*/
-#ifndef LIST_
-#define _LIST
+#ifndef LIST_H
+#define LIST_H
 
 typedef struct node node;
 typedef struct list list;
@@ -30,7 +30,7 @@ int add_to_list(list* ll, char* item);
 /* removes string frm the front of the list and returns pointer to it.
 caller is expected to free string returned*/
 
-	//possible returns NULL(empty list) and char* (if successful)
+	//possible returns NULL(for empty list) and char* (if successful)
 char* remove_from_list(list* ll);
 
 //
@@ -43,6 +43,5 @@ void flush_list(list* ll);
 //deallocates all nodes and the list itself
 
 void free_list(list* ll);
-
 
 #endif 

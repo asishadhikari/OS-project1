@@ -1,4 +1,6 @@
-/* Allocates and initializes a new list */
+/* Implementations of functions prototyped in list.h  Comments for some implementation specific information present where the functions are defined
+	Definitions of function argumments and return types are mentioned in list.h
+*/
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
@@ -14,7 +16,7 @@ list* create_list(){
 
 
 int add_to_list(list* ll, char* item){
-	int flag = 10;
+	int flag = 0;
 	//if the list if empty and has been just initialised;
 	if (ll->head==NULL){
 		
@@ -78,23 +80,22 @@ void print_list(list* ll){
 
 void flush_list(list* ll){
 	//only applicable if the list is non empty
-	if(ll->head!=NULL){
 		while(ll->head!=NULL){
 			//remove from list also deallocates the nodes
 			char* temp = remove_from_list(ll);
+			//calls remove from list and frees the pointer space
 			free(temp);
 			temp = NULL;
 		}
 
 	}
 
-}
+
 
 //completely erase trace of list ll including memory allocation of list and the data
 void free_list(list* ll){
 	flush_list(ll);
-	free(ll);
-	ll = NULL;
+	free(ll->head);
 }
 
 
